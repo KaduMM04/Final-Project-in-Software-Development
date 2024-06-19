@@ -3,7 +3,7 @@ package model;
 import java.util.Objects;
 
 public class Case {
-	
+
 	private Integer id;
 	private String typeCase;
 	private Client client;

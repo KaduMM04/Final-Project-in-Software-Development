@@ -1,0 +1,10 @@
+Case1
+Client: Alice Silva
+Lawyer: Dr. Bruno Costa
+Type of case:Criminal
+Description: Assalto à mão armada
+Case2
+Client: Alice Silva
+Lawyer: Dr. Bruno Costa
+Type of case:Civil
+Description: Divórcio consensual

@@ -12,6 +12,7 @@ public abstract class ListaCases {
 
     public static void salvarCase(Case caso) {
         listaCases.add(caso);
+        
     }
 
     public static ArrayList<Case> getListaCases() {
@@ -26,13 +27,13 @@ public abstract class ListaCases {
 
     }
 
-    public static Case buscarCase(int id) throws Exception {
+    public static Case buscarCase(Integer id) throws Exception {
 
         for(Case tempCase : listaCases) {
 
-           /// if (tempCase.getId().contains(id)) {
-           ///    return tempCase;
-           /// }
+            if (tempCase.getId().equals(id)) {
+               return tempCase;
+            }
         }
 
         throw new Exception("Caso " + id + " não encontrado");
