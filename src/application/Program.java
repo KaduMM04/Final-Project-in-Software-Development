@@ -2,70 +2,75 @@ package application;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import controller.GerenciadorCasos;
-import controller.ListaCasos.ListaCases;
-import model.Case;
-import model.Client;
+import controller.GerenciadorAdvogados;
+import controller.GerenciadorSecretarias;
+import controller.ListaAdvogados;
+import controller.ListaSecretarias;
 import model.Lawyer;
+import model.Secretary;
 
 public class Program {
 
-	public static void main(String[] args) {     
-         // Exemplo de criação de casos
-		 Client client1 = new Client(111111111, "Alice Silva", "alice.silva@example.com", "12345-678", null);
-		 Lawyer lawyer1 = new Lawyer(222222222, "Dr. Bruno Costa", "bruno.costa@example.com", "OAB-98765", "Direito Penal", null);
- 
-		 Case caso1 = new Case(1, "Criminal", client1, lawyer1, "Assalto à mão armada");
-		 Case caso2 = new Case(2, "Civil", client1, lawyer1, "Divórcio consensual");
- 
-		 // Lista de casos
-		 ArrayList<Case> listaCasos = new ArrayList<>();
-		 listaCasos.add(caso1);
-		 listaCasos.add(caso2);
- 
-		 // Testar criar arquivo se não existir
-		 GerenciadorCasos.criarArquivoSeNaoExistir();
- 
-		 // Testar salvar casos no arquivo
-		 try {
-			 GerenciadorCasos.salvarCasoNoArquivo(listaCasos);
-			 System.out.println("Casos salvos com sucesso no arquivo.");
-		 } catch (IOException e) {
-			 System.out.println("Erro ao salvar casos no arquivo: " + e.getMessage());
-		 }
- 
-		 // Testar ler casos do arquivo
-		//  ArrayList<Case> casosLidos = new ArrayList<>();
-		//  try {
-		// 	 GerenciadorCasos.lerArquivo(casosLidos);
-		// 	 System.out.println("Casos lidos do arquivo:");
-		// 	 for (Case caso : casosLidos) {
-		// 		 System.out.println(caso);
-		// 	 }
-		//  } catch (IOException e) {
-		// 	 System.out.println("Erro ao ler casos do arquivo: " + e.getMessage());
-		//  }
- 
-		 // Exemplo de impressão de informações
-		//  System.out.println("\nInformações dos advogados e clientes:");
-		//  System.out.println("Advogado: " + lawyer1);
-		//  System.out.println("Cliente: " + client1);
+    public static void main(String[] args) {
+        
+        // Exemplo de criação de advogados
+        Lawyer advogado1 = new Lawyer(111111111, "Dr. João Silva", "joao.silva@example.com", "OAB-12345", "Direito Penal", null);
+        Lawyer advogado2 = new Lawyer(222222222, "Dra. Maria Souza", "maria.souza@example.com", "OAB-54321", "Direito Civil", null);
 
-		try {
-            Case casoEncontrado = ListaCases.buscarCase(2);
-            System.out.println("Caso encontrado:\n" + casoEncontrado);
+        // Exemplo de criação de secretárias
+        Secretary secretaria1 = new Secretary(333333333, "Ana Oliveira", "ana.oliveira@example.com", 1001);
+        Secretary secretaria2 = new Secretary(444444444, "Pedro Santos", "pedro.santos@example.com", 1002);
+
+        // Lista de advogados
+        ArrayList<Lawyer> listaAdvogados = new ArrayList<>();
+        listaAdvogados.add(advogado1);
+        listaAdvogados.add(advogado2);
+
+        // Lista de secretárias
+        ArrayList<Secretary> listaSecretarias = new ArrayList<>();
+        listaSecretarias.add(secretaria1);
+        listaSecretarias.add(secretaria2);
+
+        // Testar criar arquivo se não existir para advogados e secretárias
+        GerenciadorAdvogados.criarArquivoSeNaoExistir();
+        GerenciadorSecretarias.criarArquivoSeNaoExistir();
+
+        // Testar salvar advogados no arquivo
+        try {
+            GerenciadorAdvogados.salvarAdvogadoNoArquivo(listaAdvogados);
+            System.out.println("Advogados salvos com sucesso no arquivo.");
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar advogados no arquivo: " + e.getMessage());
+        }
+
+        // Testar salvar secretárias no arquivo
+        try {
+            GerenciadorSecretarias.salvarSecretariaNoArquivo(listaSecretarias);
+            System.out.println("Secretárias salvas com sucesso no arquivo.");
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar secretárias no arquivo: " + e.getMessage());
+        }
+
+        // Testar buscar advogado pelo OAB
+        try {
+            Lawyer advogadoEncontrado = ListaAdvogados.buscarAdvogado("OAB-12345");
+            System.out.println("Advogado encontrado:\n" + advogadoEncontrado);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
-
-		try {
-            Case casoParaApagar = ListaCases.buscarCase(1);
-            ListaCases.apagarCase(casoParaApagar);
-            System.out.println("Caso com ID " + 1 + " apagado com sucesso.");
+        // Testar buscar secretária pelo número de registro
+        try {
+            Secretary secretariaEncontrada = ListaSecretarias.buscarSecretaria(1002);
+            System.out.println("Secretária encontrada:\n" + secretariaEncontrada);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-	 }
+
+        
+        // Testar listar secretárias
+        System.out.println("\nListagem de Secretárias:");
+        ListaSecretarias.listarSecretarias();
+    }
 
 }

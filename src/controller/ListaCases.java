@@ -1,10 +1,7 @@
 package controller;
+
 import java.util.ArrayList;
-
 import model.Case;
-
-public class ListaCasos {
-
 
 public abstract class ListaCases {
 
@@ -12,7 +9,7 @@ public abstract class ListaCases {
 
     public static void salvarCase(Case caso) {
         listaCases.add(caso);
-        
+        System.out.println("Caso salvo: " + caso);
     }
 
     public static ArrayList<Case> getListaCases() {
@@ -20,30 +17,47 @@ public abstract class ListaCases {
     }
 
     public static void verificarListaVazia() throws Exception {
-
         if (listaCases.isEmpty()) {
-            throw new Exception("\nNão há casos cadastrados");
+            throw new Exception("Não há casos cadastrados");
         }
-
     }
 
     public static Case buscarCase(Integer id) throws Exception {
-
-        for(Case tempCase : listaCases) {
-
+        for (Case tempCase : listaCases) {
             if (tempCase.getId().equals(id)) {
-               return tempCase;
+                return tempCase;
             }
         }
-
         throw new Exception("Caso " + id + " não encontrado");
     }
 
     public static void apagarCase(Case caso) {
         listaCases.remove(caso);
+        System.out.println("Caso removido: " + caso);
     }
-}
+
+    public static void listarCases() {
+
+        try {
+
+            ListaCases.verificarListaVazia();
+            
+            System.out.println("\nCasos Cadastrados");
+    
+            for(Case tempCase : listaCases) {
+    
+                System.out.println(tempCase.toString());
+    
+            }
+            
+
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+        }
+        
+        
+    }
 
 }
-    
 
