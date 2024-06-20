@@ -23,7 +23,4 @@ public class Secretary extends Person{
 				+ "\nRegistration number: " + registrationNum 
 				+ super.toString();
 	}
-	
-	
-
 }

@@ -40,6 +40,10 @@ public class Lawyer extends Person{
 	public void setCases(List<Case> cases) {
 		this.cases = cases;
 	}
+	
+	public void addCase(Case c) {
+		cases.add(c);
+	}
 
 	@Override
 	public int hashCode() {
@@ -66,4 +70,22 @@ public class Lawyer extends Person{
 		return super.toString() + oab + ", " + preacticArea;
 	}
 	
+	public static Lawyer fromString(String line, List<String> lines) {
+		
+		String[] lawyerData = line.split(", ");
+		
+		Integer cpf = Integer.parseInt(lawyerData[0]);
+		String name = (lawyerData[1]);
+		String email = (lawyerData[2]);
+		String oab = (lawyerData[3]);
+		String praticeArea  = (lawyerData[4]);
+		
+		List<Case> cases = new ArrayList<>();
+		for(String caseLines : lines) {
+			cases.add(Case.fromString(caseLines, null, null));
+		}
+		
+		return new Lawyer(cpf, name, email, oab, praticeArea, cases);
+		
+	}
 }

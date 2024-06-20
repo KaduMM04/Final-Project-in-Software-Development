@@ -11,12 +11,14 @@ public class Case {
 	private String description;
 	
 	public Case(Integer id, String typeCase, Client client, Lawyer lawyer, String description) {
-		super();
 		this.id = id;
 		this.typeCase = typeCase;
 		this.client = client;
 		this.lawyer = lawyer;
 		this.description = description;
+		
+		this.client.addCase(this);
+		this.lawyer.addCase(this);
 	}
 
 	public Integer getId() {
@@ -79,10 +81,28 @@ public class Case {
 
 	@Override
 	public String toString() {
+		return  + id + ", " + client.getName()
+				+ ", " + typeCase 
+				+ ", " + description;
+	}
+	
+	public String showCaseData() {
 		return "Case" + id 
 				+ "\nClient: " + client.getName()
 				+ "\nLawyer: " + lawyer.getName()
 				+ "\nType of case:" + typeCase 
 				+ "\nDescription: " + description;
+	}
+	
+	public static Case fromString(String line, Client client, Lawyer lawyer) {
+		
+		String[] caseData = line.split(", ");
+		
+		Integer id = Integer.parseInt(caseData[0]);
+		String typeCase = (caseData[1]);
+		String description = (caseData[2]);
+		
+		return new Case(id, typeCase, client, lawyer, description);
+		
 	}
 }
