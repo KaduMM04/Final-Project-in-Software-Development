@@ -10,8 +10,8 @@ public class Lawyer extends Person{
 	private String preacticArea;
 	private List<Case> cases = new ArrayList<>();
 	
-	public Lawyer(Integer cpf, String name, String email, String oab, String preacticArea, List<Case> cases) {
-		super(cpf, name, email);
+	public Lawyer(Integer cpf, String name, String email, String password, String oab, String preacticArea, List<Case> cases) {
+		super(name, email, password);
 		this.oab = oab;
 		this.preacticArea = preacticArea;
 		this.cases = cases;
@@ -43,6 +43,22 @@ public class Lawyer extends Person{
 	
 	public void addCase(Case c) {
 		cases.add(c);
+		c.setLawyer(this);
+	}
+	
+	public void removeCase(int id) {
+		
+		for (Case temp : cases) {
+			if(temp.getId().equals(id)) {
+				cases.remove(temp);
+			}
+			
+		}
+		
+	}
+	
+	public List<Case> getAllCases(){
+		return cases;
 	}
 
 	@Override
@@ -67,7 +83,17 @@ public class Lawyer extends Person{
 
 	@Override
 	public String toString() {
-		return super.toString() + oab + ", " + preacticArea;
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.UserString()).append(", ")
+			.append(oab).append(", ")
+			.append(preacticArea).append("\n")
+			.append("Cases: \n");
+		
+		for (Case c : cases) {
+			sb.append("\t").append(c.toString()).append("\n");
+		}
+		
+		return sb.toString();
 	}
 	
 	public static Lawyer fromString(String line, List<String> lines) {
@@ -77,15 +103,16 @@ public class Lawyer extends Person{
 		Integer cpf = Integer.parseInt(lawyerData[0]);
 		String name = (lawyerData[1]);
 		String email = (lawyerData[2]);
-		String oab = (lawyerData[3]);
-		String praticeArea  = (lawyerData[4]);
+		String password =(lawyerData[3]);
+		String oab = (lawyerData[4]);
+		String praticeArea  = (lawyerData[5]);
 		
 		List<Case> cases = new ArrayList<>();
 		for(String caseLines : lines) {
 			cases.add(Case.fromString(caseLines, null, null));
 		}
 		
-		return new Lawyer(cpf, name, email, oab, praticeArea, cases);
+		return new Lawyer(cpf, name, email, password, oab, praticeArea, cases);
 		
 	}
 }

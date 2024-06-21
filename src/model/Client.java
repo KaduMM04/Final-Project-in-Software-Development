@@ -2,16 +2,27 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Client extends Person{
 
+	private Integer cpf;
 	private String cep;
 	private List<Case> cases = new ArrayList<>();
 	
 	public Client(Integer cpf, String name, String email, String cep, List<Case> cases) {
-		super(cpf, name, email);
+		super(name, email);
+		this.cpf = cpf;
 		this.cep = cep;
 		this.cases = cases;
+	}
+	
+	public Integer getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(Integer cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getCep() {
@@ -32,13 +43,58 @@ public class Client extends Person{
 	
 	public void addCase(Case c) {
 		cases.add(c);
+		c.setClient(this);
+	}
+	
+	public void removeCase(int id) {
+		
+		for (Case temp : cases) {
+			if(temp.getId().equals(id)) {
+				cases.remove(temp);
+				temp.setClient(null);
+			}
+			
+		}
+		
+	}
+	
+	public List<Case> getAllCases(){
+		return cases;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Objects.hash(cpf);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Client other = (Client) obj;
+		return Objects.equals(cpf, other.cpf);
 	}
 
 	@Override
 	public String toString() {
-		return  super.toString()  
-				+ cep + ", " 
-				+ cases;
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.ClientString()).append(", ")
+			.append(cpf).append(", ")
+			.append(cep).append("\n")
+			.append("Cases: \n");
+		
+		for (Case c : cases) {
+			sb.append("\t").append(c.ClientString()).append("\n");
+		}
+		
+		return sb.toString();
 	}
 	
 	public static Client fromString(String line, List<String> lines) {

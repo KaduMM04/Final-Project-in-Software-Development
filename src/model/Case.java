@@ -9,13 +9,15 @@ public class Case {
 	private Client client;
 	private Lawyer lawyer;
 	private String description;
+	private Double price;
 	
-	public Case(Integer id, String typeCase, Client client, Lawyer lawyer, String description) {
+	public Case(Integer id, String typeCase, Client client, Lawyer lawyer, String description, Double price) {
 		this.id = id;
 		this.typeCase = typeCase;
 		this.client = client;
 		this.lawyer = lawyer;
 		this.description = description;
+		this.price = price;
 		
 		this.client.addCase(this);
 		this.lawyer.addCase(this);
@@ -50,7 +52,7 @@ public class Case {
 		return lawyer;
 	}
 
-	public void setLayer(Lawyer lawyer) {
+	public void setLawyer(Lawyer lawyer) {
 		this.lawyer = lawyer;
 	}
 
@@ -60,6 +62,14 @@ public class Case {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 	@Override
@@ -83,7 +93,16 @@ public class Case {
 	public String toString() {
 		return  + id + ", " + client.getName()
 				+ ", " + typeCase 
-				+ ", " + description;
+				+ ", " + description
+				+ ", " + price;
+	}
+	
+	public String ClientString() {
+		return  + id + ", " + lawyer.getName()
+				+ " (" + lawyer.getOab() + ")"
+				+ ", " + typeCase 
+				+ ", " + description
+				+ ", " + price;
 	}
 	
 	public String showCaseData() {
@@ -91,7 +110,8 @@ public class Case {
 				+ "\nClient: " + client.getName()
 				+ "\nLawyer: " + lawyer.getName()
 				+ "\nType of case:" + typeCase 
-				+ "\nDescription: " + description;
+				+ "\nDescription: " + description
+				+ "\nValue ";
 	}
 	
 	public static Case fromString(String line, Client client, Lawyer lawyer) {
@@ -101,8 +121,9 @@ public class Case {
 		Integer id = Integer.parseInt(caseData[0]);
 		String typeCase = (caseData[1]);
 		String description = (caseData[2]);
+		Double price = Double.parseDouble(caseData[3]);
 		
-		return new Case(id, typeCase, client, lawyer, description);
+		return new Case(id, typeCase, client, lawyer, description, price);
 		
 	}
 }

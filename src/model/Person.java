@@ -1,25 +1,20 @@
 package model;
 
-import java.util.Objects;
-
 public abstract class Person {
 	
-	private Integer cpf;
 	private String name;
 	private String email;
+	private String password;
 	
-	public Person(Integer cpf, String name, String email) {
-		this.cpf = cpf;
+	public Person(String name, String email,String password) {
 		this.name = name;
 		this.email = email;
+		this.password = password;
 	}
-
-	public Integer getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(Integer cpf) {
-		this.cpf = cpf;
+	
+	public Person(String name, String email) {
+		this.name = name;
+		this.email = email;
 	}
 
 	public String getName() {
@@ -37,28 +32,22 @@ public abstract class Person {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(cpf);
+	
+	public String getPassword() {
+		return password;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Person other = (Person) obj;
-		return Objects.equals(cpf, other.cpf);
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-		return cpf + ", " + name + ", " + email ;
+	public String ClientString() {
+		return name + ", " + email ;
 	}
 	
+	
+	public String UserString() {
+		return  name + ", " + email + ", " + password;
+	}
 	
 }
