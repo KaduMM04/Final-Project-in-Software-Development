@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import model.Secretary;
 
 public abstract class ListaSecretarias {
@@ -10,6 +9,7 @@ public abstract class ListaSecretarias {
 
     public static void salvarSecretaria(Secretary secretaria) {
         listaSecretarias.add(secretaria);
+        System.out.println("Secretária salva: " + secretaria);
     }
 
     public static ArrayList<Secretary> getListaSecretarias() {
@@ -23,9 +23,9 @@ public abstract class ListaSecretarias {
     }
 
     public static Secretary buscarSecretaria(Integer registrationNum) throws Exception {
-        for (Secretary secretaria : listaSecretarias) {
-            if (Objects.equals(secretaria.getRegistrationNum(), registrationNum)) {
-                return secretaria;
+        for (Secretary tempSecretaria : listaSecretarias) {
+            if (tempSecretaria.getRegistrationNum().equals(registrationNum)) {
+                return tempSecretaria;
             }
         }
         throw new Exception("Secretária com número de registro " + registrationNum + " não encontrada");
@@ -33,20 +33,18 @@ public abstract class ListaSecretarias {
 
     public static void apagarSecretaria(Secretary secretaria) {
         listaSecretarias.remove(secretaria);
+        System.out.println("Secretária removida: " + secretaria);
     }
 
     public static void listarSecretarias() {
         try {
             verificarListaVazia();
             System.out.println("\nSecretárias Cadastradas:");
-            for (Secretary secretaria : listaSecretarias) {
-                System.out.println(secretaria);
+            for (Secretary tempSecretaria : listaSecretarias) {
+                System.out.println(tempSecretaria.toString());
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-
-    
-
 }

@@ -25,26 +25,6 @@ public abstract class GerenciadorCliente {
         }
     }
 
-    // public static void lerArquivo(ArrayList<Client> listaClientes) throws IOException {
-
-    //     listaClientes.clear();
-
-    //     try (FileReader fileReader = new FileReader(ARQUIVO_CLIENTE);
-    //          BufferedReader bufferedReader = new BufferedReader(fileReader)) {
-
-    //         String linhaAtualDoArquivo;
-
-    //         while ((linhaAtualDoArquivo = bufferedReader.readLine()) != null) {
-
-    //            Client tempCliente = new Client();
-    //             tempCliente.fromString(linhaAtualDoArquivo);
-
-    //             listaClientes.add(tempCliente);
-    //         }
-
-    //     }
-
-    // }
 
     public static void salvarClienteNoArquivo(ArrayList<Client> listaClientes) throws IOException {
 
