@@ -41,18 +41,37 @@ public class Client extends Person{
 		this.cases = cases;
 	}
 	
-	public void addCase(Case c) {
+	public void addCase(Case c) throws IllegalArgumentException {
+		
+		if (c == null) {
+			throw new IllegalArgumentException("Case cannot be null");
+		}
+		if (cases.contains(c)) {
+			throw new IllegalArgumentException("Case already exists.");
+		}
+		
 		cases.add(c);
 		c.setClient(this);
 	}
-	
-	public void removeCase(int id) {
+public void removeCase(int searchId) throws IllegalArgumentException{
+		
+		Case caseToRemove = null;
 		
 		for (Case temp : cases) {
-			if(temp.getId().equals(id)) {
-				cases.remove(temp);
-				temp.setClient(null);
+			if(temp.getId().equals(searchId)) {
+				caseToRemove = temp;
+				break;
 			}
+			
+		}
+		
+		if (caseToRemove != null) {
+			
+			cases.remove(caseToRemove);
+			
+		} else {
+			
+			throw new IllegalArgumentException("Case with ID " + searchId + "not found.");
 			
 		}
 		
