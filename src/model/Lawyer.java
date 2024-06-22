@@ -7,13 +7,13 @@ import java.util.Objects;
 public class Lawyer extends Person{
 	
 	private String oab;
-	private String preacticArea;
+	private String practiceArea;
 	private List<Case> cases = new ArrayList<>();
 	
-	public Lawyer(Integer cpf, String name, String email, String password, String oab, String preacticArea, List<Case> cases) {
+	public Lawyer(Integer cpf, String name, String email, String password, String oab, String practiceArea, List<Case> cases) {
 		super(name, email, password);
 		this.oab = oab;
-		this.preacticArea = preacticArea;
+		this.practiceArea = practiceArea;
 		this.cases = cases;
 	}
 
@@ -25,12 +25,12 @@ public class Lawyer extends Person{
 		this.oab = oab;
 	}
 
-	public String getPreacticArea() {
-		return preacticArea;
+	public String getPreacticeArea() {
+		return practiceArea;
 	}
 
-	public void setPreacticArea(String preacticArea) {
-		this.preacticArea = preacticArea;
+	public void setPracticArea(String practiceArea) {
+		this.practiceArea = practiceArea;
 	}
 
 	public List<Case> getCases() {
@@ -41,17 +41,39 @@ public class Lawyer extends Person{
 		this.cases = cases;
 	}
 	
-	public void addCase(Case c) {
+	public void addCase(Case c) throws IllegalArgumentException {
+		
+		if (c == null) {
+			throw new IllegalArgumentException("Case cannot be null");
+		}
+		if (cases.contains(c)) {
+			throw new IllegalArgumentException("Case already exists.");
+		}
+		
+		
 		cases.add(c);
 		c.setLawyer(this);
 	}
 	
-	public void removeCase(int id) {
+	public void removeCase(int searchId) throws IllegalArgumentException{
+		
+		Case caseToRemove = null;
 		
 		for (Case temp : cases) {
-			if(temp.getId().equals(id)) {
-				cases.remove(temp);
+			if(temp.getId().equals(searchId)) {
+				caseToRemove = temp;
+				break;
 			}
+			
+		}
+		
+		if (caseToRemove != null) {
+			
+			cases.remove(caseToRemove);
+			
+		} else {
+			
+			throw new IllegalArgumentException("Case with ID " + searchId + "not found.");
 			
 		}
 		
@@ -86,7 +108,7 @@ public class Lawyer extends Person{
 		StringBuilder sb = new StringBuilder();
 		sb.append(super.UserString()).append(", ")
 			.append(oab).append(", ")
-			.append(preacticArea).append("\n")
+			.append(practiceArea).append("\n")
 			.append("Cases: \n");
 		
 		for (Case c : cases) {
@@ -103,16 +125,16 @@ public class Lawyer extends Person{
 		Integer cpf = Integer.parseInt(lawyerData[0]);
 		String name = (lawyerData[1]);
 		String email = (lawyerData[2]);
-		String password =(lawyerData[3]);
+		String password = (lawyerData[3]);
 		String oab = (lawyerData[4]);
-		String praticeArea  = (lawyerData[5]);
+		String practiceArea  = (lawyerData[5]);
 		
 		List<Case> cases = new ArrayList<>();
 		for(String caseLines : lines) {
 			cases.add(Case.fromString(caseLines, null, null));
 		}
 		
-		return new Lawyer(cpf, name, email, password, oab, praticeArea, cases);
+		return new Lawyer(cpf, name, email, password, oab, practiceArea, cases);
 		
 	}
 }
