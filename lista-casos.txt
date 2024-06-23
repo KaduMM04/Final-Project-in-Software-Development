@@ -1,5 +1,0 @@
-Case2
-Client: Alice Silva
-Lawyer: Dr. Bruno Costa
-Type of case:Civil
-Description: Divórcio consensual
