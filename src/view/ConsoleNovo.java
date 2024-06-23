@@ -1,5 +1,3 @@
-package application;
-
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -27,8 +25,11 @@ public class Console {
                 System.out.print("\nValor inválido. Digite um valor 'int': ");
             
             } finally {
+
+                // necessário limpar o buffer antes da proxima leitura:
                 leitor.nextLine();
             }
+        
         }
             
         return valor;
@@ -54,13 +55,16 @@ public class Console {
                 System.out.print("\nValor inválido. Digite um valor 'float': ");
             
             } finally {
+
+                // necessário limpar o buffer antes da proxima leitura:
                 leitor.nextLine();
             }
         
         }
             
         return valor;
-  
+        
+        
     }
 
     public static String lerString() {
