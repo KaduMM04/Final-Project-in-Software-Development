@@ -32,7 +32,7 @@ public class Menu {
                     break;
                 case 3:
                     List<Client> clientesCadastrados = ClienteCadastro.getListaClientes();
-                    System.out.println("\nLista de Clientes Cadastrados:");
+                    System.out.println("\nLista de Clientes Cadastrados: ");
                     for (Client cliente : clientesCadastrados) {
                         System.out.println(cliente);
                     }
@@ -49,7 +49,7 @@ public class Menu {
                     
                     break;
                 default:
-                    System.out.println("Opcao invalida. Tente novamente.");
+                    System.out.println("Opcao invalida. Tente novamente. ");
                     break;
             }
         }

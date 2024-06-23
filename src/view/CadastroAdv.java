@@ -9,13 +9,13 @@ public class CadastroAdv {
 
     public static void cadastroAdv() {
         System.out.println("Cadastro de advogado");
-        System.out.println("Digite o nome do advogado:");
+        System.out.println("Digite o nome do advogado: ");
         String name = ConsoleNovo.lerString();
         System.out.println("Digite o numero do CEP: ");
         String cep = ConsoleNovo.lerString(); 
-        System.out.println("Digite o e-mail:");
+        System.out.println("Digite o e-mail: ");
         String email = ConsoleNovo.lerString();
-        System.out.println("Informe o caso:");
+        System.out.println("Informe o caso: ");
         String cases = ConsoleNovo.lerString();
 
         Lawyer lawyer = new Lawyer(null, name, email, email, cases, cep, null);
