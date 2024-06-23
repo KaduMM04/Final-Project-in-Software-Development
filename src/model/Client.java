@@ -53,7 +53,8 @@ public class Client extends Person{
 		cases.add(c);
 		c.setClient(this);
 	}
-public void removeCase(int searchId) throws IllegalArgumentException{
+	
+	public void removeCase(int searchId) throws IllegalArgumentException{
 		
 		Case caseToRemove = null;
 		

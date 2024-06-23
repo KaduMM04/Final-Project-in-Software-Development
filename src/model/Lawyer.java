@@ -9,13 +9,15 @@ public class Lawyer extends Person{
 	private String oab;
 	private String practiceArea;
 	private List<Case> cases = new ArrayList<>();
-	
-	public Lawyer(Integer cpf, String name, String email, String password, String oab, String practiceArea, List<Case> cases) {
+
+	public Lawyer(String name, String email, String password, String oab, String practiceArea, List<Case> cases) {
 		super(name, email, password);
 		this.oab = oab;
 		this.practiceArea = practiceArea;
 		this.cases = cases;
 	}
+	
+	
 
 	public String getOab() {
 		return oab;
@@ -122,19 +124,18 @@ public class Lawyer extends Person{
 		
 		String[] lawyerData = line.split(", ");
 		
-		Integer cpf = Integer.parseInt(lawyerData[0]);
-		String name = (lawyerData[1]);
-		String email = (lawyerData[2]);
-		String password = (lawyerData[3]);
-		String oab = (lawyerData[4]);
-		String practiceArea  = (lawyerData[5]);
+		String name = (lawyerData[0]);
+		String email = (lawyerData[1]);
+		String password = (lawyerData[2]);
+		String oab = (lawyerData[3]);
+		String practiceArea  = (lawyerData[4]);
 		
 		List<Case> cases = new ArrayList<>();
 		for(String caseLines : lines) {
 			cases.add(Case.fromString(caseLines, null, null));
 		}
 		
-		return new Lawyer(cpf, name, email, password, oab, practiceArea, cases);
+		return new Lawyer(name, email, password, oab, practiceArea, cases);
 		
 	}
 }
