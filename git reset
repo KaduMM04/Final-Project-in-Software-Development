@@ -1,0 +1,65 @@
+[33mcommit 2121b62cbad1d170802720f5692b0665d794f018[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/add-console[m[33m, [m[1;32mmain[m[33m)[m
+Author: Fernando Andrade <fernands75@hotmail.com>
+Date:   Sun Jun 23 09:46:04 2024 -0300
+
+    Adicionando console
+
+[33mcommit 4d45d45257890f53f15a8376533668817460aedf[m
+Author: Fernando Andrade <fernands75@hotmail.com>
+Date:   Sat Jun 22 19:32:46 2024 -0300
+
+    adicionando cadastro de Advogado
+
+[33mcommit 9b0f9865e2bc791a181e2001d451437bc1cabf91[m
+Merge: 51d0ec2 a1d05a4
+Author: Carlos Eduardo Mendes Miranda <144290147+KaduMM04@users.noreply.github.com>
+Date:   Sat Jun 22 13:14:53 2024 -0300
+
+    Merge pull request #2 from KaduMM04/feature/class-model
+    
+    Exception handling for case addition
+
+[33mcommit a1d05a47466d27bf9483554ba3f5566d4da9e6a1[m[33m ([m[1;31morigin/feature/class-model[m[33m)[m
+Author: Kadu Miranda <kadumendesmiranda@gmail.com>
+Date:   Sat Jun 22 13:12:25 2024 -0300
+
+    Exception handling for case addition
+
+[33mcommit 51d0ec2718237ae5beb55080a9d73b458b76c4f2[m
+Merge: 15346c6 78abfec
+Author: Carlos Eduardo Mendes Miranda <144290147+KaduMM04@users.noreply.github.com>
+Date:   Fri Jun 21 19:13:49 2024 -0300
+
+    Merge pull request #1 from KaduMM04/feature/class-model
+    
+    Feature/class model
+
+[33mcommit 78abfecd90240d0d377701d37890975fa8a23b4f[m
+Author: Kadu Miranda <kadumendesmiranda@gmail.com>
+Date:   Fri Jun 21 19:04:51 2024 -0300
+
+    Updated models classes(Person, Lawyer, Client, Secretary and Case)
+
+[33mcommit ee92b05db35e3f2da52591ad4491555f3fbd3142[m
+Author: Kadu Miranda <kadumendesmiranda@gmail.com>
+Date:   Thu Jun 20 17:03:22 2024 -0300
+
+    Added fromString method to the classes Lawyer, Client, and Case.
+
+[33mcommit 515a6409453d7abe7072b3a2d8598634d6b61ba4[m
+Author: Kadu Miranda <kadumendesmiranda@gmail.com>
+Date:   Sun Jun 16 21:48:45 2024 -0300
+
+    Class Lawyer, Client, Case and Secretary created
+
+[33mcommit 5b31ee63bd6302f0fa2fb5dc08b063b5b8dade40[m
+Author: Kadu Miranda <kadumendesmiranda@gmail.com>
+Date:   Sun Jun 16 21:05:07 2024 -0300
+
+    Person class created
+
+[33mcommit 15346c67f8ae29bcd48b7da21d6de58f0bf75caa[m
+Author: Kadu Miranda <kadumendesmiranda@gmail.com>
+Date:   Sat Jun 15 17:05:02 2024 -0300
+
+    Project created
