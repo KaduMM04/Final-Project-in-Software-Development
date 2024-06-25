@@ -3,14 +3,14 @@ package view;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import controller.GerenciadorAdvogados;
-import controller.GerenciadorCasos;
-import controller.GerenciadorCliente;
-import controller.GerenciadorSecretarias;
-import controller.ListaAdvogado;
-import controller.ListaCases;
-import controller.ListaClientes;
-import controller.ListaSecretarias;
+import Controller.GerenciadorAdvogados;
+import Controller.GerenciadorCasos;
+import Controller.GerenciadorCliente;
+import Controller.GerenciadorSecretarias;
+import Controller.ListaAdvogado;
+import Controller.ListaCases;
+import Controller.ListaClientes;
+import Controller.ListaSecretarias;
 import model.Case;
 import model.Client;
 import model.Lawyer;
@@ -193,24 +193,12 @@ public class Menu {
 		int opAtualizar = Console.lerInt("Informe sua opção: ");
 		
 		 switch (opAtualizar) {
-	         case 1:
-	             atualizarDadosAdv();
-	             break;
-	         case 2:
-	        	 atualizarDadosCliente();
-	             break;
-	         case 3:
-	        	 atualizarDadosCaso();
-	             break;
-	         case 4:
-	        	 atualizarDadosSecretaria();
-	             break;
-	         case 0:
-	        	 System.out.println("\nVoltando ao menu principal...");
-	        	 break;
-	         default:
-	        	 System.out.println("Opção inválida!");
-	              break;
+	         case 1 -> atualizarDadosAdv();
+	         case 2 -> atualizarDadosCliente();
+	         case 3 -> atualizarDadosCaso();
+	         case 4 -> atualizarDadosSecretaria();
+	         case 0 -> System.out.println("\nVoltando ao menu principal...");
+	         default -> System.out.println("Opção inválida!");
 		 } 
 		 
 }

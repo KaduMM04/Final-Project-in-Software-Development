@@ -1,13 +1,17 @@
 package model.interfaces;
 
-class Logintest{
+import Controller.ListaUsuarios;
+import model.Person;
+
+public class Logintest{
     public boolean login(String email, String password) {
-      for (Person user : ListarUsuarios.getLista()) {
-        if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
-            System.out.println("Login efetuado com sucesso!");
-            return true;
+        for (Person user : ListaUsuarios.getLista()) {
+            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
+                System.out.println("Login efetuado com sucesso!");
+                return true;
+            }
         }
-    }
-    return false;
+        System.out.println("Falha no login!");
+        return false;
     }
 }
