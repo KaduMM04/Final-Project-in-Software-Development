@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 
 
@@ -24,7 +24,7 @@ public abstract class ListaClientes {
         }
     }
 
-    public static Client buscarCliente(Integer cpf) throws Exception {
+    public static Client buscarCliente(String cpf) throws Exception {
         for (Client tempCliente : listaClientes) {
             if (tempCliente.getCpf().equals(cpf)) {
                 return tempCliente;

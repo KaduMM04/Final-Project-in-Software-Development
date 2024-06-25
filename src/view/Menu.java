@@ -1,98 +1,232 @@
 package view;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.ArrayList;
 
-import application.Console;
-import Controller.GerenciadorAdvogados;
-import Controller.GerenciadorCasos;
-import Controller.GerenciadorCliente;
-import Controller.GerenciadorSecretarias;
-import Controller.ListaCases;
-import Controller.ListaAdvogado;
-import Controller.ListaSecretarias;
-import Controller.ListaClientes;
-
+import controller.GerenciadorAdvogados;
+import controller.GerenciadorCasos;
+import controller.GerenciadorCliente;
+import controller.GerenciadorSecretarias;
+import controller.ListaAdvogado;
+import controller.ListaCases;
+import controller.ListaClientes;
+import controller.ListaSecretarias;
 import model.Case;
 import model.Client;
 import model.Lawyer;
 import model.Secretary;
 
 public class Menu {
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        boolean sair = false;
-
-        while (!sair) {
-            System.out.println("\nMENU\n");
-            System.out.println("Selecione a opção desejada:");
-            System.out.println("1. Cadastrar advogado");
-            System.out.println("2. Cadastrar cliente");
-            System.out.println("3. Listar clientes");
-            System.out.println("4. Listar advogados");
-            System.out.println("5. Cadastrar caso");
-            System.out.println("6. Listar casos");
-            System.out.println("7. Cadastrar secretária");
-            System.out.println("8. Listar secretárias");
-            System.out.println("9. Buscar cliente");
-            System.out.println("10. Buscar advogado");
-            System.out.println("0. Sair");
-
-            int op = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (op) {
-                case 1:
-                    cadastrarAdvogado();
-                    break;
-                case 2:
-                    cadastrarCliente();
-                    break;
-                case 3:
-                    listarClientes();
-                    break;
-                case 4:
-                    listarAdvogados();
-                    break;
-                case 5:
-                    cadastrarCaso();
-                    break;
-                case 6:
-                    listarCases();
-                    break;
-                case 7:
-                    cadastrarSecretaria();
-                    break;
-                case 8:
-                    listarSecretarias();
-                    break;
-                case 9:
-                    buscarCliente();
-                    break;
-                case 10:
-                    buscarAdvogado();
-                    break;
-                case 0:
-                    sair = true;
-                    break;
-                default:
-                    System.out.println("Opção inválida!");
-                    break;
-            }
-        }
-
-        scanner.close();
+	
+	static ArrayList<Lawyer> listaAdvogados = ListaAdvogado.getListaAdvogados();
+	static ArrayList<Client> listaClientes = ListaClientes.getListaClientes();
+	static ArrayList<Case> listaCasos = ListaCases.getListaCases();
+	static ArrayList<Secretary> listaSecr = ListaSecretarias.getListaSecretarias();
+	
+	public static void executarSistema() throws IOException {
+		
+		while (true) {
+		
+			exibirMenu();
+			int op = Console.lerInt("Informe uma opção: ");
+			verificarOpção(op);
+			
+		}	
+		
+	}
+	
+   
+    private static void exibirMenu() {
+    	   
+    	  System.out.println("\nSistema Basico advocacia - Menu"
+    			   			+ "\n1) Menu de Cadastros"
+    			   			+ "\n2) Menu de Listagens"
+    	   					+ "\n3) Menu de buscas"
+    	   					+ "\n4) Menu de atualização de dados"
+    	   					+ "\n0) Sair");
+    
+     }
+    	   
+    	   
+      private static void verificarOpção(int op) {
+    	  
+    	  switch (op) {
+	          case 1:
+	             menuCadastro();
+	              break;
+	          case 2:
+	        	  menuListagens();
+	              break;
+	          case 3:
+	        	  menuBuscas();
+	              break;
+	          case 4:
+	        	  menuAtualizarDados();
+	        	  break;
+	          case 5:
+	              buscarAdvogado();
+	              break;
+	          case 0:
+	        	  System.out.println("\nO Sistema foi finalizado...\n");
+	        	  System.exit(0);
+	              break;
+	              
+	          default:
+	              System.out.println("Opção inválida!");
+	              break;
+	              
+    	  }
+    	  
+      }
+      
+      private static void menuCadastro() {
+  		
+  		System.out.println("\nCADASTROS - Menu"
+  							+ "\n1) Cadastrar advogado"
+  					        + "\n2) Cadastrar cliente"
+  							+ "\n3) Cadastrar caso"
+  				    	    + "\n4) Cadastrar secretária"
+  				    	    + "\n0) voltar");
+  		
+  		int opCadastro = Console.lerInt("Informe sua opção: ");
+  		
+  		 switch (opCadastro) {
+	         case 1:
+	             cadastrarAdvogado();
+	             break;
+	         case 2:
+	             cadastrarCliente();
+	             break;
+	         case 3:
+	       	  	 cadastrarCaso();
+	             break;
+	         case 4:
+	        	 cadastrarSecretaria();
+	             break;
+	         case 0:
+	        	 System.out.println("\nVoltando ao menu principal...");
+	        	 break;
+	         default:
+	        	 System.out.println("Opção inválida!");
+	              break;
+  		 } 
+  		 
+  	}
+      
+    private static void menuListagens() {
+    		
+    		System.out.println("\nListas - Menu"
+    							+ "\n1) Listar advogados"
+    					        + "\n2) Listar clientes"
+    							+ "\n3) Listar casos"
+    				    	    + "\n4) Listar secretárias"
+    				    	    + "\n0) voltar");
+    		
+    		int opCadastro = Console.lerInt("Informe sua opção: ");
+    		
+    		 switch (opCadastro) {
+  	         case 1:
+  	             listarAdvogados();
+  	             break;
+  	         case 2:
+  	        	 listarClientes();
+  	             break;
+  	         case 3:
+  	        	 listarCases();
+  	             break;
+  	         case 4:
+  	        	 listarSecretarias();
+  	             break;
+  	         case 0:
+  	        	 System.out.println("\nVoltando ao menu principal...");
+  	        	 break;
+  	         default:
+  	        	 System.out.println("Opção inválida!");
+  	              break;
+    		 } 
+    		 
     }
-
-    public static void cadastrarAdvogado() {
-        String nomeAdv = Console.lerString("Digite o nome do advogado: ");
+    
+    private static void menuBuscas() {
+		
+		System.out.println("\nBuscas - Menu"
+							+ "\n1) Buscar advogado"
+					        + "\n2) Buscar cliente"
+							+ "\n3) Buscar caso"
+				    	    + "\n4) Buscar secretária"
+				    	    + "\n0) Buscar");
+		
+		int opBusca = Console.lerInt("Informe sua opção: ");
+		
+		 switch (opBusca) {
+	         case 1:
+	             buscarAdvogado();
+	             break;
+	         case 2:
+	        	 buscarCliente();
+	             break;
+	         case 3:
+	        	 buscarCaso();
+	             break;
+	         case 4:
+	        	 buscarSecretaria();
+	        	 break;
+	         case 0:
+	        	 exibirMenu();
+	        	 break;
+	         default:
+	        	 System.out.println("Opção inválida!");
+	              break;
+		 } 
+		 
+    }
+      
+    private static void menuAtualizarDados() {
+		
+		System.out.println("\nListas - Menu"
+							+ "\n1) Atualizar Dados advogado"
+					        + "\n2) Atualizar Dados cliente"
+							+ "\n3) Atualizar Dados caso"
+				    	    + "\n4) Atualizar Dados secretárias"
+				    	    + "\n0) voltar");
+		
+		int opAtualizar = Console.lerInt("Informe sua opção: ");
+		
+		 switch (opAtualizar) {
+	         case 1:
+	             atualizarDadosAdv();
+	             break;
+	         case 2:
+	        	 atualizarDadosCliente();
+	             break;
+	         case 3:
+	        	 atualizarDadosCaso();
+	             break;
+	         case 4:
+	        	 atualizarDadosSecretaria();
+	             break;
+	         case 0:
+	        	 System.out.println("\nVoltando ao menu principal...");
+	        	 break;
+	         default:
+	        	 System.out.println("Opção inválida!");
+	              break;
+		 } 
+		 
+}
+      
+  
+    private static void cadastrarAdvogado() {
+    	
+        String nomeAdv = Console.lerString("\nDigite o nome do advogado: ");
         String oab = Console.lerString("Digite o número da OAB: ");
         String emailAdv = Console.lerString("Digite o e-mail: ");
+        String passwordAdv = Console.lerString("Digite a senha: ");
         String especialidade = Console.lerString("Informe a especialidade: ");
-        Lawyer lawyer = new Lawyer(null, nomeAdv, emailAdv, emailAdv, oab, especialidade, null);
+        
+        Lawyer lawyer = new Lawyer(nomeAdv, emailAdv,passwordAdv, oab, especialidade);
         ListaAdvogado.salvarAdvogado(lawyer);
+        
         try {
             GerenciadorAdvogados.salvarAdvogadoNoArquivo(ListaAdvogado.getListaAdvogados());
         } catch (IOException e) {
@@ -100,12 +234,16 @@ public class Menu {
         }
     }
 
-    public static void cadastrarCliente() {
+   private static void cadastrarCliente() {
+    	
+    	String cpf = Console.lerString("\nDigite o CPF: ");
         String nomeCli = Console.lerString("Digite o nome do cliente: ");
-        String cpf = Console.lerString("Digite o CPF: ");
         String emailCli = Console.lerString("Digite o e-mail: ");
-        Client cliente = new Client(null, nomeCli, cpf, emailCli, null);
+        String cep = Console.lerString("Digite o cep: ");
+        
+        Client cliente = new Client(cpf ,nomeCli, emailCli, cep);
         ListaClientes.salvarCliente(cliente);
+        
         try {
             GerenciadorCliente.salvarClienteNoArquivo(ListaClientes.getListaClientes());
         } catch (IOException e) {
@@ -113,76 +251,293 @@ public class Menu {
         }
     }
 
-    public static void listarClientes() {
+    private static void listarClientes() {
         ListaClientes.listarClientes();
     }
 
-    public static void listarAdvogados() {
+    private static void listarAdvogados() {
         ListaAdvogado.listarAdvogados();
     }
 
-    public static void cadastrarCaso() {
-        int id = Console.lerInt("Digite o ID do caso: ");
-        String descricao = Console.lerString("Digite a descrição do caso: ");
+    private static void cadastrarCaso() {
+    	
+        int id = Console.lerInt("\nDigite o ID do caso: ");
+        String tipoCaso = Console.lerString("Digite o tipo do caso: ");
         String clienteCpf = Console.lerString("Digite o CPF do cliente: ");
         String advogadoOab = Console.lerString("Digite o número da OAB do advogado: ");
+        String descricao = Console.lerString("Digite a descrição do caso: ");
+        Double valor = Console.lerDouble("Digite o valor do caso: ");
 
         try {
-            Client cliente = ListaClientes.buscarCliente(null);
+        	
+            Client cliente = ListaClientes.buscarCliente(clienteCpf);
             Lawyer advogado = ListaAdvogado.buscarAdvogado(advogadoOab);
-            Case caso = new Case(null, advogadoOab, cliente, advogado, descricao, null);
+            Case caso = new Case(id, tipoCaso, cliente , advogado, descricao, valor);
+   
             ListaCases.salvarCase(caso);
+            GerenciadorAdvogados.salvarAdvogadoNoArquivo(ListaAdvogado.getListaAdvogados());
+            GerenciadorCliente.salvarClienteNoArquivo(ListaClientes.getListaClientes());
             GerenciadorCasos.salvarCasoNoArquivo(ListaCases.getListaCases());
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } 
+        
     }
 
-    public static void listarCases() {
+    private static void listarCases() {
         ListaCases.listarCases();
     }
 
-    public static void cadastrarSecretaria() {
+    private static void cadastrarSecretaria() {
+    	
+    	int numRegistro = Console.lerInt("\nDigite o número de registro: ");
         String nomeSec = Console.lerString("Digite o nome da secretária: ");
-        int registro = Console.lerInt("Digite o número de registro: ");
-        Secretary secretaria = new Secretary(nomeSec, nomeSec, nomeSec, null);
+        String emailSec = Console.lerString("Digite o email da secretária: ");
+        String passwordSec = Console.lerString("Digite a senha da secretária: ");
+        
+        Secretary secretaria = new Secretary(nomeSec, emailSec, passwordSec, numRegistro);
         ListaSecretarias.salvarSecretaria(secretaria);
+        
         try {
+        	
             GerenciadorSecretarias.salvarSecretariaNoArquivo(ListaSecretarias.getListaSecretarias());
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void listarSecretarias() {
+   private static void listarSecretarias() {
         ListaSecretarias.listarSecretarias();
     }
 
-    public static void buscarCliente() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Digite o CPF do cliente que deseja buscar: ");
-        String cpf = scanner.nextLine();
+    private static void buscarCliente() {
+      
+        String cpf = Console.lerString("\nDigite o CPF do cliente que deseja buscar: ");
 
         try {
-            Client cliente = ListaClientes.buscarCliente(null);
-            System.out.println("Cliente encontrado: " + cliente);
+        	
+            Client cliente = ListaClientes.buscarCliente(cpf);
+            System.out.println("\nCliente encontrado: " + cliente);
+            	
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        
     }
 
-    public static void buscarAdvogado() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Digite o número da OAB do advogado que deseja buscar: ");
-        String oab = scanner.nextLine();
+   private static void buscarAdvogado() {
+     
+        String oab = Console.lerString("\nDigite o número da OAB do advogado que deseja buscar: ");
 
         try {
+        	
             Lawyer advogado = ListaAdvogado.buscarAdvogado(oab);
-            System.out.println("Advogado encontrado: " + advogado);
+            System.out.println("\nAdvogado encontrado: " + advogado);
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
+    
+   private static void buscarCaso() {
+        
+        int id = Console.lerInt("\nDigite o id do caso que deseja buscar: ");
+
+        try {
+        	
+            Case c = ListaCases.buscarCase(id);
+            System.out.println("\nCaso encontrado: " + c.showCaseData());
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    private static void buscarSecretaria() {
+        
+        int numRegistro = Console.lerInt("\nDigite o número de registro da secretaria que deseja buscar: ");
+
+        try {
+        	
+            Secretary s = ListaSecretarias.buscarSecretaria(numRegistro);
+            System.out.println("\nSecretaria encontrado: " + s);
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    private static void atualizarDadosAdv() {
+    	
+    	 try {
+
+             ListaAdvogado.verificarListaVazia();
+
+             System.out.println("\nInforme a OAB do advogado que deseja atualizar:");
+             String oab = Console.lerString("OAB: ");
+
+             Lawyer tempLawyer = ListaAdvogado.buscarAdvogado(oab);
+
+             System.out.println("\nAdvogado Localizado:" +
+             tempLawyer.toString() + "\nInforme novos dados:\n");
+
+             String nomeAdv = Console.lerString("Digite o nome do advogado: ");
+             oab = Console.lerString("Digite o número da OAB: ");
+             String emailAdv = Console.lerString("Digite o e-mail: ");
+             String passwordAdv = Console.lerString("Digite a senha: ");
+             String especialidade = Console.lerString("Informe a especialidade: ");
+             
+             tempLawyer.setOab(oab);
+             tempLawyer.setName(nomeAdv);
+             tempLawyer.setEmail(emailAdv);
+             tempLawyer.setPassword(passwordAdv);
+             tempLawyer.setPracticArea(especialidade);
+             
+             GerenciadorAdvogados.salvarAdvogadoNoArquivo(listaAdvogados);
+
+             System.out.println("\nDados do advogado atualizado com sucesso:" + 
+             tempLawyer.toString());
+         
+         } catch (Exception exception) {
+
+             System.out.println(exception.getMessage());
+         }
+
+    }
+    
+    private static void atualizarDadosCliente() {
+    	
+   	 try {
+
+            ListaClientes.verificarListaVazia();
+
+            System.out.println("\nInforme o CPF do cliente que deseja atualizar:");
+            String cpf = Console.lerString("CPF: ");
+
+            Client tempClient = ListaClientes.buscarCliente(cpf);
+            
+            System.out.println("\nCliente Localizado:" +
+            tempClient.toString() + "\nInforme novos dados:\n");
+
+
+            cpf = Console.lerString("\nDigite o CPF: ");
+            String nomeCli = Console.lerString("Digite o nome do cliente: ");
+            String emailCli = Console.lerString("Digite o e-mail: ");
+            String cep = Console.lerString("Digite o cep: ");
+            
+            tempClient.setCpf(cpf);
+            tempClient.setName(nomeCli);
+            tempClient.setEmail(emailCli);
+            tempClient.setCep(cep);
+            
+            GerenciadorCliente.salvarClienteNoArquivo(listaClientes);
+
+            System.out.println("\nDados do cliente atualizado com sucesso:" + 
+            tempClient.toString());
+        
+        } catch (Exception exception) {
+
+            System.out.println(exception.getMessage());
+        }
+
+   }
+    private static void atualizarDadosCaso() {
+    	
+   	 try {
+
+            ListaAdvogado.verificarListaVazia();
+
+            System.out.println("\nInforme o ID do caso que deseja atualizar:");
+            int id = Console.lerInt("ID: ");
+
+            Case tempCaso = ListaCases.buscarCase(id);
+            
+            System.out.println("\nCaso Localizado:" +
+            tempCaso.showCaseData() + "\nInforme novos dados:\n");
+
+            id = Console.lerInt("\nDigite o ID do caso: ");
+            String tipoCaso = Console.lerString("Digite o tipo do caso: ");
+            String clienteCpf = Console.lerString("Digite o CPF do cliente: ");
+            String advogadoOab = Console.lerString("Digite o número da OAB do advogado: ");
+            String descricao = Console.lerString("Digite a descrição do caso: ");
+            Double valor = Console.lerDouble("Digite o valor do caso: ");
+            
+            tempCaso.setId(id);
+            tempCaso.setDescription(descricao);
+            tempCaso.setTypeCase(tipoCaso);
+            tempCaso.setPrice(valor);
+           
+
+            try {
+            	
+                Client cliente = ListaClientes.buscarCliente(clienteCpf);
+                Lawyer advogado = ListaAdvogado.buscarAdvogado(advogadoOab);
+                
+                tempCaso.setClient(cliente);
+                tempCaso.setLawyer(advogado);
+             
+                GerenciadorAdvogados.salvarAdvogadoNoArquivo(ListaAdvogado.getListaAdvogados());
+                GerenciadorCliente.salvarClienteNoArquivo(ListaClientes.getListaClientes());
+                GerenciadorCasos.salvarCasoNoArquivo(ListaCases.getListaCases());
+                
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+            System.out.println("\nDados do caso atualizado com sucesso:" + 
+            tempCaso.showCaseData());
+        
+        } catch (Exception exception) {
+
+            System.out.println(exception.getMessage());
+        }
+
+   }
+    private static void atualizarDadosSecretaria() {
+    	
+   	 try {
+
+            ListaSecretarias.verificarListaVazia();
+
+            System.out.println("\nInforme o nuemro de registro da secretaria que deseja atualizar:");
+            int nR = Console.lerInt("NumRegistro: ");
+
+            Secretary tempSec = ListaSecretarias.buscarSecretaria(nR);
+
+            System.out.println("\nSecretaria Localizado:" +
+            tempSec.toString() + "\nInforme novos dados:\n");
+
+            nR = Console.lerInt("\nDigite o número de registro: ");
+            String nomeSec = Console.lerString("Digite o nome da secretária: ");
+            String emailSec = Console.lerString("Digite o email da secretária: ");
+            String passwordSec = Console.lerString("Digite a senha da secretária: ");
+            
+            tempSec.setRegistrationNum(nR);
+            tempSec.setName(nomeSec);
+            tempSec.setEmail(emailSec);
+            tempSec.setPassword(passwordSec);
+           
+            
+            try {
+            	
+                GerenciadorSecretarias.salvarSecretariaNoArquivo(ListaSecretarias.getListaSecretarias());
+                
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            
+            GerenciadorAdvogados.salvarAdvogadoNoArquivo(listaAdvogados);
+
+            System.out.println("\nDados da secretaria atualizado com sucesso:" + 
+            tempSec.toString());
+        
+        } catch (Exception exception) {
+
+            System.out.println(exception.getMessage());
+        }
+
+   }
+    
 }

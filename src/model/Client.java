@@ -6,22 +6,26 @@ import java.util.Objects;
 
 public class Client extends Person{
 
-	private Integer cpf;
+	private String cpf;
 	private String cep;
-	private List<Case> cases = new ArrayList<>();
+	private List<Case> cases;
 	
-	public Client(Integer cpf, String name, String email, String cep, List<Case> cases) {
+	public Client() {
+		
+	}
+	
+	public Client(String cpf, String name, String email, String cep) {
 		super(name, email);
 		this.cpf = cpf;
 		this.cep = cep;
-		this.cases = cases;
+		cases = new ArrayList<>();
 	}
 	
-	public Integer getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Integer cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -53,7 +57,8 @@ public class Client extends Person{
 		cases.add(c);
 		c.setClient(this);
 	}
-public void removeCase(int searchId) throws IllegalArgumentException{
+	
+	public void removeCase(int searchId) throws IllegalArgumentException{
 		
 		Case caseToRemove = null;
 		
@@ -116,20 +121,15 @@ public void removeCase(int searchId) throws IllegalArgumentException{
 		return sb.toString();
 	}
 	
-	public static Client fromString(String line, List<String> lines) {
+	public static Client fromString(String line) {
 		
-		String[] clientData = line.split(", ");
-		
-		Integer cpf = Integer.parseInt(clientData[0]);
-		String name = clientData[1];
-		String email = clientData[2];
-		String cep = clientData[3];
-		
-		List<Case> cases = new ArrayList<>();
-		for(String caseLines : lines) {
-			cases.add(Case.fromString(caseLines, null, null));	
-		}
-		
-		return new Client(cpf, name, email, cep, cases);
+	    String[] clientData = line.split(", ");
+	    
+	    String cpf = clientData[0];
+	    String name = clientData[1];
+	    String email = clientData[2];
+	    String cep = clientData[3];
+	    
+	    return new Client(cpf, name, email, cep);
 	}
 }
