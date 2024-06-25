@@ -9,7 +9,7 @@ public abstract class ListaCases {
 
     public static void salvarCase(Case caso) {
         listaCases.add(caso);
-        System.out.println("Caso salvo: " + caso);
+        System.out.println("\nCaso salvo: " + caso.showCaseData());
     }
 
     public static ArrayList<Case> getListaCases() {
@@ -46,7 +46,7 @@ public abstract class ListaCases {
 
             for(Case tempCase : listaCases) {
 
-                System.out.println(tempCase.toString());
+                System.out.println(tempCase.showCaseData());
 
             }
 

@@ -11,6 +11,14 @@ public class Case {
 	private String description;
 	private Double price;
 	
+	public Case(Integer id, String typeCase, String description, Double price) {
+		
+		this.id = id;
+		this.typeCase = typeCase;
+		this.description = description;
+		this.price = price;
+	}
+
 	public Case(Integer id, String typeCase, Client client, Lawyer lawyer, String description, Double price) {
 		this.id = id;
 		this.typeCase = typeCase;
@@ -91,7 +99,7 @@ public class Case {
 
 	@Override
 	public String toString() {
-		return  + id + ", " + client.getName()
+		return  + id 
 				+ ", " + typeCase 
 				+ ", " + description
 				+ ", " + price;
@@ -106,24 +114,24 @@ public class Case {
 	}
 	
 	public String showCaseData() {
-		return "Case" + id 
+		return  "\nIdCase: " + id 
 				+ "\nClient: " + client.getName()
 				+ "\nLawyer: " + lawyer.getName()
-				+ "\nType of case:" + typeCase 
+				+ "\nType of case: " + typeCase 
 				+ "\nDescription: " + description
-				+ "\nValue ";
+				+ "\nValue:  " + String.format("%.2f", price);
 	}
 	
-	public static Case fromString(String line, Client client, Lawyer lawyer) {
+	public static Case fromString(String line) {
 		
 		String[] caseData = line.split(", ");
 		
 		Integer id = Integer.parseInt(caseData[0]);
 		String typeCase = (caseData[1]);
-		String description = (caseData[2]);
-		Double price = Double.parseDouble(caseData[3]);
+		String description = (caseData[4]);
+		Double price = (Double.parseDouble(caseData[5]));
 		
-		return new Case(id, typeCase, client, lawyer, description, price);
+		return new Case(id, typeCase, description, price);
 		
 	}
 }
