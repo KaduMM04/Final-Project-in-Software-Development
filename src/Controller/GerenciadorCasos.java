@@ -1,11 +1,13 @@
 package controller;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import model.Case;
 
 public abstract class GerenciadorCasos {
@@ -25,9 +27,22 @@ public abstract class GerenciadorCasos {
             System.out.println(exception.getMessage());
         }
     }
+    
+    public static void lerArquivo(ArrayList<Case> listaCasos) throws IOException {
+        listaCasos.clear(); // Limpar a lista existente para evitar duplicatas
 
+        try (FileReader fileReader = new FileReader(ARQUIVO_CASO);
+             BufferedReader bufferedReader = new BufferedReader(fileReader)) {
 
+            String linhaAtualDoArquivo;
 
+            while ((linhaAtualDoArquivo = bufferedReader.readLine()) != null) {
+                Case tempCaso = Case.fromString(linhaAtualDoArquivo);
+                listaCasos.add(tempCaso);
+            }
+        }
+    }
+    
     public static void salvarCasoNoArquivo(ArrayList<Case> listaCasos) throws IOException {
 
         try (FileWriter fileWriter = new FileWriter(ARQUIVO_CASO);
@@ -38,5 +53,6 @@ public abstract class GerenciadorCasos {
             }
         }
     }
+
 
 }
