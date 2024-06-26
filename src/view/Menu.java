@@ -15,6 +15,7 @@ import model.Case;
 import model.Client;
 import model.Lawyer;
 import model.Secretary;
+import model.interfaces.Logintest;
 
 public class Menu {
 	
@@ -44,6 +45,8 @@ public class Menu {
                              2) Menu de Listagens
                              3) Menu de buscas
                              4) Menu de atualiza\u00e7\u00e3o de dados
+                             5) Buscar Advogado
+                             6) Login
                              0) Sair""");
     
      }
@@ -57,6 +60,7 @@ public class Menu {
 	          case 3 -> menuBuscas();
 	          case 4 -> menuAtualizarDados();
 	          case 5 -> buscarAdvogado();
+              case 6 -> login();
 	          case 0 -> {
                       System.out.println("\nO Sistema foi finalizado...\n");
                       System.exit(0);
@@ -67,6 +71,14 @@ public class Menu {
     	  }
     	  
       }
+
+      private static void login() {
+        String email = Console.lerString("Digite o email: ");
+        String password = Console.lerString("Digite a senha: ");
+        Logintest login = new Logintest();
+        login.login(email, password);
+        }
+
       
       private static void menuCadastro() {
   		
@@ -192,7 +204,7 @@ public class Menu {
 		 } 
 		 
 }
-      
+
   
     private static void cadastrarAdvogado() {
     	
