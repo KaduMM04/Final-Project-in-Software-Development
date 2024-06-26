@@ -71,12 +71,12 @@ public class Menu {
       private static void menuCadastro() {
   		
   		System.out.println("""
-                                   CADASTROS - Menu
-                                   1) Cadastrar advogado
-                                   2) Cadastrar cliente
-                                   3) Cadastrar caso
-                                   4) Cadastrar secret\u00e1ria
-                                   0) voltar""");
+                        CADASTROS - Menu
+                        1) Cadastrar advogado
+                        2) Cadastrar cliente
+                        3) Cadastrar caso
+                        4) Cadastrar secret\u00e1ria
+                        0) voltar""");
   		
   		int opCadastro = Console.lerInt("Informe sua opção: ");
   		
