@@ -1,0 +1,11 @@
+{
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "files.autoSave": "afterDelay",
+    "java.saveActions.organizeImports": true,
+    "window.zoomLevel": 0,
+    "terminal.integrated.windowsEnableConpty": false,
+    "json.schemas": [
+
+    ]
+}

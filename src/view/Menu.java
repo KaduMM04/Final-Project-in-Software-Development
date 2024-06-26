@@ -38,12 +38,13 @@ public class Menu {
    
     private static void exibirMenu() {
     	   
-    	  System.out.println("\nSistema Basico advocacia - Menu"
-    			   			+ "\n1) Menu de Cadastros"
-    			   			+ "\n2) Menu de Listagens"
-    	   					+ "\n3) Menu de buscas"
-    	   					+ "\n4) Menu de atualização de dados"
-    	   					+ "\n0) Sair");
+    	  System.out.println("""
+                             Sistema Basico advocacia - Menu
+                             1) Menu de Cadastros
+                             2) Menu de Listagens
+                             3) Menu de buscas
+                             4) Menu de atualiza\u00e7\u00e3o de dados
+                             0) Sair""");
     
      }
     	   
@@ -51,29 +52,17 @@ public class Menu {
       private static void verificarOpção(int op) {
     	  
     	  switch (op) {
-	          case 1:
-	             menuCadastro();
-	              break;
-	          case 2:
-	        	  menuListagens();
-	              break;
-	          case 3:
-	        	  menuBuscas();
-	              break;
-	          case 4:
-	        	  menuAtualizarDados();
-	        	  break;
-	          case 5:
-	              buscarAdvogado();
-	              break;
-	          case 0:
-	        	  System.out.println("\nO Sistema foi finalizado...\n");
-	        	  System.exit(0);
-	              break;
+	          case 1 -> menuCadastro();
+	          case 2 -> menuListagens();
+	          case 3 -> menuBuscas();
+	          case 4 -> menuAtualizarDados();
+	          case 5 -> buscarAdvogado();
+	          case 0 -> {
+                      System.out.println("\nO Sistema foi finalizado...\n");
+                      System.exit(0);
+                }
 	              
-	          default:
-	              System.out.println("Opção inválida!");
-	              break;
+	          default -> System.out.println("Opção inválida!");
 	              
     	  }
     	  
@@ -81,12 +70,13 @@ public class Menu {
       
       private static void menuCadastro() {
   		
-  		System.out.println("\nCADASTROS - Menu"
-  							+ "\n1) Cadastrar advogado"
-  					        + "\n2) Cadastrar cliente"
-  							+ "\n3) Cadastrar caso"
-  				    	    + "\n4) Cadastrar secretária"
-  				    	    + "\n0) voltar");
+  		System.out.println("""
+                                   CADASTROS - Menu
+                                   1) Cadastrar advogado
+                                   2) Cadastrar cliente
+                                   3) Cadastrar caso
+                                   4) Cadastrar secret\u00e1ria
+                                   0) voltar""");
   		
   		int opCadastro = Console.lerInt("Informe sua opção: ");
   		
